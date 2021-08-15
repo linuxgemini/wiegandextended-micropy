@@ -7,3 +7,10 @@ a somewhat platform agnostic (currently configured for rp2) micropython port of 
 note if you're using a platform using the rp2 platform (aka raspberry pi pico):
     please use ampy ( https://github.com/scientifichackers/ampy ) to upload files one by one
     micropython for rp2 is a bit broken for file chunk uploads
+
+files to upload are:
+  - boot.py
+  - main.py
+  - helpers.py
+  - wiegand.py
+  - wiegand_decoders.py
