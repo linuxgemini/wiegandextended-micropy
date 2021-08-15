@@ -12,7 +12,7 @@ def get_hex_str(wiegand_data: int) -> str:
     return "{0:x}".format(wiegand_data)
 
 def get_bits(wiegand_data: int, wiegand_bitcount: int):
-    return [int(c) for c in "{0:0{l}b}".format(wiegand_data, l=wiegand_bitcount)]
+    return [int(c) for c in get_binary_str(wiegand_data, wiegand_bitcount)]
 
 def decode_guess(bits: list[int]) -> GenericWiegandCardFormat:
     bitlength = len(bits)
