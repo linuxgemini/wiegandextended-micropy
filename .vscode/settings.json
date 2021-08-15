@@ -1,0 +1,12 @@
+{
+    "python.linting.enabled": true,
+
+    // Loaded Stubs:  rp2-micropython-1.15.0 
+    "python.autoComplete.extraPaths": [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-e1b8ce6\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\WiegandExtended-micropy"],
+    "python.autoComplete.typeshedPaths":  [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-e1b8ce6\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\WiegandExtended-micropy"],
+    "python.analysis.typeshedPaths":  [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-e1b8ce6\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\WiegandExtended-micropy"],
+    "python.analysis.extraPaths":  [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-e1b8ce6\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\WiegandExtended-micropy"],
+
+    "python.linting.pylintEnabled": false,
+    "python.languageServer": "Pylance"
+}

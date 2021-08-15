@@ -1,0 +1,9 @@
+wiegandextended-micropy
+=========================
+
+a somewhat platform agnostic (currently configured for rp2) micropython port of WiegandNGextended.ino
+(available at https://gist.github.com/linuxgemini/9f089af171d5842eaaa4e0ae39f7d957 as usual™)
+
+note if you're using a platform using the rp2 platform (aka raspberry pi pico):
+    please use ampy ( https://github.com/scientifichackers/ampy ) to upload files one by one
+    micropython for rp2 is a bit broken for file chunk uploads
