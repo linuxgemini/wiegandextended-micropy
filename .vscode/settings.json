@@ -1,18 +1,38 @@
 {
     "python.languageServer": "Pylance",
     "python.analysis.extraPaths": [
-        ".micropython-stubs\\cpython_core",
-        ".micropython-stubs\\cpython_pyboard",
-        ".micropython-stubs\\micropython-1_16-frozen",
+        ".micropython-stubs\\stubs\\cpython_core",
+        ".micropython-stubs\\stubs\\cpython_pyboard",
+        ".micropython-stubs\\stubs\\micropython_cpython_core",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\GENERIC",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\stm32\\GENERIC",
         ".custom-stubs\\micropython-pyboard-1_16"
     ],
     "python.autoComplete.extraPaths": [
-        ".micropython-stubs\\cpython_core",
-        ".micropython-stubs\\cpython_pyboard",
-        ".micropython-stubs\\micropython-1_16-frozen",
+        ".micropython-stubs\\stubs\\cpython_core",
+        ".micropython-stubs\\stubs\\cpython_pyboard",
+        ".micropython-stubs\\stubs\\micropython_cpython_core",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\GENERIC",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\stm32\\GENERIC",
+        ".custom-stubs\\micropython-pyboard-1_16"
+    ],
+    "python.analysis.typeshedPaths": [
+        ".micropython-stubs\\stubs\\cpython_core",
+        ".micropython-stubs\\stubs\\cpython_pyboard",
+        ".micropython-stubs\\stubs\\micropython_cpython_core",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\GENERIC",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\stm32\\GENERIC",
+        ".custom-stubs\\micropython-pyboard-1_16"
+    ],
+    "python.autoComplete.typeshedPaths": [
+        ".micropython-stubs\\stubs\\cpython_core",
+        ".micropython-stubs\\stubs\\cpython_pyboard",
+        ".micropython-stubs\\stubs\\micropython_cpython_core",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\GENERIC",
+        ".micropython-stubs\\stubs\\micropython-1_14-frozen\\stm32\\GENERIC",
         ".custom-stubs\\micropython-pyboard-1_16"
     ],
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "git.ignoreLimitWarning": true,
 }
