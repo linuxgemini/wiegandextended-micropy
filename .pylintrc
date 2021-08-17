@@ -1,5 +1,5 @@
 [MASTER]
-init-hook='import sys;sys.path[1:1] = ["src\\lib", ".micropython-stubs\\stubs\\cpython_core", ".micropython-stubs\\stubs\\cpython_pyboard", ".micropython-stubs\\stubs\\micropython_cpython_core", ".micropython-stubs\\stubs\\micropython-1_14-frozen\\GENERIC", ".micropython-stubs\\stubs\\micropython-1_14-frozen\\stm32\\GENERIC", ".custom-stubs\\micropython-pyboard-1_16",];'
+init-hook='import sys;sys.path[1:1] = ["src\\lib", ".custom-stubs\\micropython-pyboard-1_16", ".micropython-stubs\\stubs\\micropython-1_14-frozen\\stm32\\GENERIC", ".micropython-stubs\\stubs\\micropython-1_14-frozen\\GENERIC", ".micropython-stubs\\stubs\\micropython_cpython_core", ".micropython-stubs\\stubs\\cpython_pyboard", ".micropython-stubs\\stubs\\cpython_core",];'
 
 [MESSAGES CONTROL]
 # Only show warnings with the listed confidence levels. Leave empty to show

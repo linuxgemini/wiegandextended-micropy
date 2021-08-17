@@ -4,9 +4,9 @@ wiegand.py - read card IDs from a wiegand card reader
 (C) 2017 Paul Jimenez - released under LGPLv3+
 (C) 2021 linuxgemini
 """
-import micropython
 from machine import Pin, Timer
 import utime
+import micropython
 
 class Wiegand:
     def __init__(self, pin0, pin1, callback):
@@ -38,7 +38,7 @@ class Wiegand:
     def _on_pin1(self, newstate):
         self._on_pin(1, newstate)
 
-    def _on_pin(self, is_one, newstate):
+    def _on_pin(self, is_one, _):
         now = utime.ticks_ms()
         if self.last_bit_read is not None and now - self.last_bit_read < 2:
             # too fast
