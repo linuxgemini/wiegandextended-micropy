@@ -1,14 +1,26 @@
+PIN0 = "D2"
+PIN1 = "D3"
+
+READER_RED = "D8"
+READER_GRN = "D9"
+READER_HLD = "D10"
+READER_BZR = "D11"
+READER_TMP = "D12"
+
 # main.py
 print("run main.py")
 from wiegand import Wiegand
 import wiegand_decoders
 import helpers
+from hidreader import HIDreader
 
 try:
     main_thread.timer.deinit() # type: ignore
 except NameError: ""
 
 helpers.headstart()
+
+reader = HIDreader(READER_RED, READER_GRN, READER_HLD, READER_BZR, READER_TMP)
 
 def on_card(wiegand_data, wiegand_bitcount, card_count):
     wg_binary = wiegand_decoders.get_binary_str(wiegand_data, wiegand_bitcount)
@@ -36,8 +48,16 @@ def on_card(wiegand_data, wiegand_bitcount, card_count):
     print()
 helpers.sleep1sec()
 
-main_thread = Wiegand(2, 3, on_card)
+main_thread = Wiegand(PIN0, PIN1, on_card)
 helpers.afterload()
 
 while True:
+    helpers.sleep1sec()
+    reader.set_led("orange")
+    helpers.sleep1sec()
+    reader.set_led("green")
+    helpers.sleep1sec()
+    reader.set_led("red")
+    helpers.sleep1sec()
+    reader.ring_buzzer()
     helpers.sleep1sec()
