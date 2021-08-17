@@ -142,6 +142,4 @@ dmypy.json
 # End of https://www.gitignore.io/api/python,visualstudiocode
 
 ### Micropy Cli ###
-.micropy/
-!micropy.json
-!src/lib
+.micropython-stubs/
