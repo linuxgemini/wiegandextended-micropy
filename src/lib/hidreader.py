@@ -20,6 +20,7 @@ class HIDreader:
         self.__buzzer_is_active = False
         self.__buzzer_current_cycle_count = 0
         self.__buzzer_cycle_limit = 8
+        self.__buzzer_cycle_forever = False
 
     def __toggle_buzzer(self, _):
         self.__buzzer_is_active = False if self.buzzer.value() == 1 else True
@@ -33,12 +34,8 @@ class HIDreader:
 
         self.__buzzer_current_cycle_count = self.__buzzer_current_cycle_count + 1
 
-        if self.__buzzer_current_cycle_count >= self.__buzzer_cycle_limit:
-            self.__buzzer_timer.deinit()
-            self.buzzer.on()
-            self.__buzzer_is_active = False
-            self.__buzzer_timer_is_active = False
-            self.__buzzer_current_cycle_count = 0
+        if (self.__buzzer_current_cycle_count >= self.__buzzer_cycle_limit) and not self.__buzzer_cycle_forever:
+            self.stop_buzzer()
 
     def __tamper_detect(self, newstate_pin):
         self.__tampered = False if newstate_pin.value() == 1 else True
@@ -46,7 +43,7 @@ class HIDreader:
         if self.__tampered:
             self.hold.off()
             self.__reader_on_hold = True
-            self.set_led("yellow")
+            self.set_led("amber")
             self.ring_buzzer(continuous=True)
         else:
             self.hold.on()
@@ -64,7 +61,7 @@ class HIDreader:
         elif color == "green":
             self.LED["red"].on()
             self.LED["green"].off()
-        elif color == "yellow":
+        elif color == "amber":
             self.LED["red"].off()
             self.LED["green"].off()
         else:
@@ -79,7 +76,7 @@ class HIDreader:
                 cycle_ms = 125
 
             if continuous:
-                beep_count = 1000000
+                self.__buzzer_cycle_forever = True
 
             self.__buzzer_cycle_limit = beep_count * 2
 
@@ -89,4 +86,11 @@ class HIDreader:
 
     def stop_buzzer(self):
         if self.__buzzer_timer_is_active:
-            self.__buzzer_cycle_limit = 8
+            self.__buzzer_timer.deinit()
+            self.__buzzer_timer_is_active = False
+
+        self.buzzer.on()
+        self.__buzzer_is_active = False
+        self.__buzzer_cycle_limit = 8
+        self.__buzzer_current_cycle_count = 0
+        self.__buzzer_cycle_forever = False
