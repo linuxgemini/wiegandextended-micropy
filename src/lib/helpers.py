@@ -4,13 +4,16 @@ def ___prn_nl():
     print("\n" * 4)
 
 def headstart():
-    utime.sleep_ms(1000)
+    sleep(1)
     ___prn_nl()
     print("""wiegand extended demo micropython port
 (c) 2021 linuxgemini""")
 
-def sleep1sec():
-    utime.sleep_ms(1000)
+def sleep(sec: int = 1):
+    utime.sleep_ms(sec * 1000)
+
+def sleep_ms(ms: int = 100):
+    utime.sleep_ms(ms)
 
 def afterload():
     print("loaded")

@@ -1,9 +1,9 @@
 class GenericWiegandCardFormat:
-    def __init__(self):
-        self.facility_code: int = 0
-        self.card_code: int = 0
-        self.card_number: int = 0
-        self.format_type: str = ""
+    def __init__(self, fc: int = 0, cc: int = 0, cn: int = 0, fmt: str = ""):
+        self.facility_code: int = fc
+        self.card_code: int = cc
+        self.card_number: int = cn
+        self.format_type: str = fmt
 
 def get_binary_str(wiegand_data: int, wiegand_bitcount: int) -> str:
     return "{0:0{l}b}".format(wiegand_data, l=wiegand_bitcount)
