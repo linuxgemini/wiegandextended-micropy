@@ -1,6 +1,7 @@
 # main.py
 import lib.helpers
 import lib.wiegand_decoders
+import lib.screen
 from lib.wiegand import Wiegand
 from lib.hidreader import HIDreader
 
@@ -14,6 +15,9 @@ __READER_GRN = "D9"
 __READER_HLD = "D10"
 __READER_BZR = "D11"
 __READER_TMP = "D12"
+
+__SCREEN_SDA = "D14"
+__SCREEN_SCL = "D15"
 
 __allowed_cards = [
     lib.wiegand_decoders.GenericWiegandCardFormat(54, 64004, 0, "H10301"), # HID SEOS
@@ -34,7 +38,7 @@ lib.helpers.headstart()
 
 
 __reader = HIDreader(__READER_RED, __READER_GRN, __READER_HLD, __READER_BZR, __READER_TMP)
-
+__screen = lib.screen.init_screen(__SCREEN_SDA, __SCREEN_SCL)
 
 def __card_check(wiegand_data: int, guessed_decode: lib.wiegand_decoders.GenericWiegandCardFormat):
     if len(__allowed_cards) == 0:
@@ -61,9 +65,11 @@ def __print_decode_guess(guessed_decode):
         print("        Format: " + guessed_decode.format_type)
         if guessed_decode.format_type == "H10302":
             print("            CN: " + str(guessed_decode.card_number))
+            __screen.putstr(str(guessed_decode.card_number))
         else:
             print("            FC: " + str(guessed_decode.facility_code))
             print("            CC: " + str(guessed_decode.card_code))
+            __screen.putstr(str(guessed_decode.facility_code) + ", " + str(guessed_decode.card_code))
         if guessed_decode.format_type == "H10302 or H10304":
             print("            CN: " + str(guessed_decode.card_number))
 
@@ -74,6 +80,8 @@ def __on_card(wiegand_data, wiegand_bitcount, _):
     wg_hex = lib.wiegand_decoders.get_hex_str(wiegand_data, wiegand_bitcount)
     guessed_decode = lib.wiegand_decoders.decode_guess(wg_bits)
     print()
+    __screen.clear()
+    __screen.putstr("Hex: " + wg_hex.upper() + "\n")
     print("Wiegand data found:")
     print("    Bit Length: " + str(wiegand_bitcount))
     print("        Binary: " + wg_binary)
@@ -86,12 +94,18 @@ def __on_card(wiegand_data, wiegand_bitcount, _):
         __reader.pass_light()
     else:
         __reader.deny_light()
+    __rs_scr()
 lib.helpers.sleep()
 
+
+def __rs_scr():
+    __screen.clear()
+    __screen.backlight_on()
+    __screen.putstr("Ready to read.\n")
+    __screen.blink_cursor_off()
+    __screen.hide_cursor()
 
 __wiegand_sync_thread = Wiegand(__PIN0, __PIN1, __on_card)
 lib.helpers.afterload()
 
-
-while True:
-    lib.helpers.sleep()
+__rs_scr()

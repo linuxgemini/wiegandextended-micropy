@@ -16,7 +16,10 @@ def sleep_ms(ms: int = 100):
     utime.sleep_ms(ms)
 
 def afterload():
-    print("loaded")
+    print("""loaded.
+going to REPL, the demo always works on the background
+be careful with the console output :)""")
+    ___prn_nl()
 
 def rev(s: str) -> str:
     return "" if not(s) else rev(s[1::])+s[0]

@@ -29,7 +29,7 @@ class Wiegand:
         self.pin1.irq(trigger=Pin.IRQ_FALLING, handler=self._on_pin1)
         self.last_bit_read = None
         self.timer = Timer(-1)
-        self.timer.init(period=50, mode=Timer.PERIODIC, callback=self._cardcheck)
+        self.timer.init(period=25, mode=Timer.PERIODIC, callback=self._cardcheck)
         self.cards_read = 0
 
     def _on_pin0(self, newstate):
@@ -40,7 +40,7 @@ class Wiegand:
 
     def _on_pin(self, is_one, _):
         now = utime.ticks_ms()
-        if self.last_bit_read is not None and now - self.last_bit_read < 2:
+        if self.last_bit_read is not None and now - self.last_bit_read < 1:
             # too fast
             return
 
@@ -54,7 +54,7 @@ class Wiegand:
         if self.last_bit_read is None:
             return
         now = utime.ticks_ms()
-        if now - self.last_bit_read > 50:
+        if now - self.last_bit_read > 25:
             # too slow - new start!
             self.last_bit_read = None
             self.last_card = self.next_card

@@ -15,3 +15,5 @@ files to upload are:
   - lib/wiegand.py
   - lib/wiegand_decoders.py
   - lib/hidreader.py
+
+now uses https://github.com/dhylands/python_lcd for some lcd action
