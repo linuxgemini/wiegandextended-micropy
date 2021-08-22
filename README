@@ -11,9 +11,6 @@ note if you're using a platform using the rp2 platform (aka raspberry pi pico):
 files to upload are:
   - boot.py
   - main.py
-  - lib/helpers.py
-  - lib/wiegand.py
-  - lib/wiegand_decoders.py
-  - lib/hidreader.py
+  - lib/**
 
 now uses https://github.com/dhylands/python_lcd for some lcd action
