@@ -7,17 +7,17 @@ from lib.hidreader import HIDreader
 
 print("run main.py")
 
-__PIN0 = "D2"
-__PIN1 = "D3"
+__PIN0 = 7 # Pin 10, GP7
+__PIN1 = 8 # Pin 11, GP8
 
-__READER_RED = "D8"
-__READER_GRN = "D9"
-__READER_HLD = "D10"
-__READER_BZR = "D11"
-__READER_TMP = "D12"
+__READER_RED = 2 # Pin 4, GP2
+__READER_GRN = 3 # Pin 5, GP3
+__READER_HLD = 4 # Pin 6, GP4
+__READER_BZR = 5 # Pin 7, GP5
+__READER_TMP = 6 # Pin 9, GP6
 
-__SCREEN_SDA = "D14"
-__SCREEN_SCL = "D15"
+__SCREEN_SDA = 20 # Pin 26, GP20, I2C0 SDA
+__SCREEN_SCL = 21 # Pin 27, GP21, I2C0 SCL
 
 __allowed_cards = [
     lib.wiegand_decoders.GenericWiegandCardFormat(54, 64004, 0, "H10301"), # HID SEOS
@@ -38,7 +38,7 @@ lib.helpers.headstart()
 
 
 __reader = HIDreader(__READER_RED, __READER_GRN, __READER_HLD, __READER_BZR, __READER_TMP)
-__screen = lib.screen.init_screen(__SCREEN_SDA, __SCREEN_SCL)
+__screen = lib.screen.init_screen(__SCREEN_SDA, __SCREEN_SCL, True, True)
 
 def __card_check(wiegand_data: int, guessed_decode: lib.wiegand_decoders.GenericWiegandCardFormat):
     if len(__allowed_cards) == 0:
